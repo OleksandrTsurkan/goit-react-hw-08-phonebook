@@ -19,7 +19,7 @@ export default function HomePage() {
         </>
       ) : (
         <>
-          <HomeText>Hello! I'm your phonebook.</HomeText>
+          <HomeText>Hello, this is the home page.</HomeText>
           <HomeText>Please log in to your account or register.</HomeText>
 
           <ButtonHome>
