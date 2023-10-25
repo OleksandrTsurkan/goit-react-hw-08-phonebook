@@ -33,14 +33,14 @@ const LoginForm = () => {
   const hendleSubmitLogin = event => {
     event.preventDefault();
     const loginUser = { email, password };
-    console.log('logInUser', loginUser);
+    //  console.log('logInUser', loginUser);
     dispatch(logIn(loginUser))
       .unwrap()
       .then(originalPromiseResult => {
         toast.success(`${originalPromiseResult.loginUser.name} welcome back!`);
       })
       .catch(() => {
-        toast.failure('Incorrect login or password');
+        return 'Incorrect login or password';
       });
 
     setEmail('');

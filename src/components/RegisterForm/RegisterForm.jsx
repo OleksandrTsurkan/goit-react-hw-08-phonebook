@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { register } from 'redux/auth/authThunk';
-import { ButtonSend, Form, Input, Labelcontact, LoginDiv } from './RegisterForm.module';
+import {
+  ButtonSend,
+  Form,
+  Input,
+  Labelcontact,
+  LoginDiv,
+} from './RegisterForm.module';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -30,14 +36,14 @@ const RegisterForm = () => {
   const handleSubmitUser = e => {
     e.preventDefault();
     const newUser = { name, email, password };
-    console.log('newUser', newUser);
+    // console.log('newUser', newUser);
     dispatch(register(newUser))
       .unwrap()
       .then(originalPromiseResult => {
         toast.success(`${originalPromiseResult.newUser.name} welcome!`);
       })
       .catch(() => {
-        toast.failure("Sorry, something's wrong");
+        return "Sorry, something's wrong";
       });
     setName('');
     setEmail('');

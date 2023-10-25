@@ -13,12 +13,13 @@ import ContactsPage from 'pages/ContactsPage/ContactsPage';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 
 export const App = () => {
-   const dispatch = useDispatch();
-   const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-   useEffect(() => {
-     dispatch(refreshUser());
-   }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return isRefreshing ? (
     <Loader />
   ) : (
@@ -48,6 +49,4 @@ export const App = () => {
       </Route>
     </Routes>
   );
-};
-
-export default App;
+}; 

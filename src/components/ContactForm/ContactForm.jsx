@@ -17,37 +17,39 @@ export const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const phoneBook = useSelector(selectContactsList);
+  const contacts = useSelector(selectContactsList);
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'name') setName(value);
     else setNumber(value);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const onSubmitAddContact = event => {
+    event.preventDefault();
     const data = { name, number };
-    const newContact = { ...data, id: nanoid() };
+    const newObj = { ...data, id: nanoid() };
 
-    if (inNameNew(phoneBook, newContact) !== undefined) {
-      return alert(`${newContact.name}is already in contacts.`);
+    if (isNameNew(contacts, newObj) !== undefined) {
+      toast.warning(`${newObj.name} is already in contacts`);
+      return;
     }
 
-    dispatch(createContactsThunk(newContact))
+    dispatch(createContactsThunk(newObj))
       .unwrap()
-      .then(promiseResult => {
-        toast.success(`${promiseResult.name} successfully added to contacts`);
+      .then(originalPromiseResult => {
+        toast.success(
+          `${originalPromiseResult.name} successfully added to contacts`
+        );
       })
       .catch(() => {
         toast.failure("Sorry, something's wrong");
       });
-
     reset();
   };
 
-  const inNameNew = (phoneBook, newContact) => {
-    return phoneBook.find(
-      ({ name }) => name.toLowerCase() === newContact.name.toLowerCase()
+  const isNameNew = (contacts, newObj) => {
+    return contacts.find(
+      ({ name }) => name.toLowerCase() === newObj.name.toLowerCase()
     );
   };
 
@@ -60,7 +62,7 @@ export const ContactForm = () => {
     <>
       <h2>Phonebook</h2>
       <ContactDiv>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={onSubmitAddContact}>
           <Labelcontact>
             Name:
             <Input
