@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { register } from 'redux/auth/authThunk';
 import {
-  ButtonSend,
-  Form,
-  Input,
-  Labelcontact,
-  LoginDiv,
-} from './RegisterForm.module';
+  ButtonSendRegistered,
+  LabelContactRegistered,
+  RegisteredDiv,
+  RegisteredInput,
+} from './RegisterForm.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -36,25 +35,25 @@ const RegisterForm = () => {
   const handleSubmitUser = e => {
     e.preventDefault();
     const newUser = { name, email, password };
-    // console.log('newUser', newUser);
+    console.log('newUser', newUser);
     dispatch(register(newUser))
       .unwrap()
       .then(originalPromiseResult => {
         toast.success(`${originalPromiseResult.newUser.name} welcome!`);
       })
       .catch(() => {
-        return "Sorry, something's wrong";
+        toast.failure("Sorry, something's wrong");
       });
     setName('');
     setEmail('');
     setPassword('');
   };
   return (
-    <LoginDiv>
-      <Form onSubmit={handleSubmitUser}>
-        <Labelcontact>
+    <RegisteredDiv>
+      <RegisterForm onSubmit={handleSubmitUser}>
+        <LabelContactRegistered>
           Name
-          <Input
+          <RegisteredInput
             type="text"
             name="name"
             value={name}
@@ -64,10 +63,10 @@ const RegisterForm = () => {
             placeholder="Enter name ..."
             onChange={handleChangeInput}
           />
-        </Labelcontact>
-        <Labelcontact>
+        </LabelContactRegistered>
+        <LabelContactRegistered>
           Email
-          <Input
+          <RegisteredInput
             type="email"
             name="email"
             value={email}
@@ -77,10 +76,10 @@ const RegisterForm = () => {
             placeholder="Enter email ..."
             onChange={handleChangeInput}
           />
-        </Labelcontact>
-        <Labelcontact>
+        </LabelContactRegistered>
+        <LabelContactRegistered>
           Password
-          <Input
+          <RegisteredInput
             type="password"
             name="password"
             value={password}
@@ -90,10 +89,10 @@ const RegisterForm = () => {
             placeholder="Enter password ..."
             onChange={handleChangeInput}
           />
-        </Labelcontact>
-        <ButtonSend type="submit">Register</ButtonSend>
-      </Form>
-    </LoginDiv>
+        </LabelContactRegistered>
+        <ButtonSendRegistered type="submit">Register</ButtonSendRegistered>
+      </RegisterForm>
+    </RegisteredDiv>
   );
 };
 

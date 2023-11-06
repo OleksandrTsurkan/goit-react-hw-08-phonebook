@@ -31,4 +31,3 @@ export const HomeDiv = styled.div`
   border-radius: 32px 32px 0 0;
   background-color: #f9f9f9;
 `;
-

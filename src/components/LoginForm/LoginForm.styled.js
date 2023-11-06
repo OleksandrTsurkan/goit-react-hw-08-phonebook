@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Form = styled.form`
+export const LoginForm = styled.form`
   display: flex;
   width: 370px;
   padding: 8px;
@@ -9,7 +9,7 @@ export const Form = styled.form`
   border: 2px solid black;
 `;
 
-export const Input = styled.input`
+export const LoginInput = styled.input`
   height: 25px;
   padding: 4px;
   width: 280px;
@@ -24,7 +24,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Labelcontact = styled.label`
+export const LabelcontactLogin = styled.label`
   width: 400px;
   justify-content: space-between;
   align-items: center;
@@ -32,7 +32,7 @@ export const Labelcontact = styled.label`
   padding: 4px 5px;
 `;
 
-export const ButtonSend = styled.button`
+export const ButtonSendLogin = styled.button`
   border: 3px solid #3a7999;
   border-radius: 20px;
   background-color: #fffcfc;

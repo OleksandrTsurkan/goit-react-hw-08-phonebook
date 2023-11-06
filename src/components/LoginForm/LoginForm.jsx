@@ -1,14 +1,8 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { logIn } from 'redux/auth/authThunk';
-import {
-  ButtonSend,
-  Form,
-  Input,
-  Labelcontact,
-  LoginDiv,
-} from './LoginForm.styled';
+import { ButtonSendLogin, LabelcontactLogin, LoginDiv, LoginInput } from './LoginForm.styled';
+const { useState } = require('react');
+const { useDispatch } = require('react-redux');
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -33,13 +27,14 @@ const LoginForm = () => {
   const hendleSubmitLogin = event => {
     event.preventDefault();
     const loginUser = { email, password };
+    console.log('logInUser', loginUser);
     dispatch(logIn(loginUser))
       .unwrap()
       .then(originalPromiseResult => {
         toast.success(`${originalPromiseResult.loginUser.name} welcome back!`);
       })
       .catch(() => {
-        return 'Incorrect login or password';
+        toast.failure('Incorrect login or password');
       });
 
     setEmail('');
@@ -48,10 +43,10 @@ const LoginForm = () => {
 
   return (
     <LoginDiv>
-      <Form onSubmit={hendleSubmitLogin}>
-        <Labelcontact>
+      <LoginForm onSubmit={hendleSubmitLogin}>
+        <LabelcontactLogin>
           Email
-          <Input
+          <LoginInput
             type="email"
             name="email"
             value={email}
@@ -61,10 +56,10 @@ const LoginForm = () => {
             placeholder="Enter email ..."
             onChange={handleChangeInput}
           />
-        </Labelcontact>
-        <Labelcontact>
+        </LabelcontactLogin>
+        <LabelcontactLogin>
           Password
-          <Input
+          <LoginInput
             type="password"
             name="password"
             value={password}
@@ -74,9 +69,11 @@ const LoginForm = () => {
             placeholder="Enter password ..."
             onChange={handleChangeInput}
           />
-        </Labelcontact>
-        <ButtonSend type="submit">LogIn</ButtonSend>
-      </Form>
+        </LabelcontactLogin>
+        <ButtonSendLogin type="submit">
+          LogIn
+        </ButtonSendLogin>
+      </LoginForm>
     </LoginDiv>
   );
 };

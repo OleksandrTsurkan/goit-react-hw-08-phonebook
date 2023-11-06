@@ -1,6 +1,4 @@
-import { styled } from 'styled-components';
-
-export const ButtonUser = styled.button`
+.button {
   height: 30px;
   width: 100px;
   padding: 4px;
@@ -10,10 +8,9 @@ export const ButtonUser = styled.button`
   border-radius: 4px;
   outline: none;
   cursor: pointer;
-`;
-
-export const UserDiv = styled.div`
+}
+.userMenu {
   display: flex;
   align-items: center;
   gap: 10px;
-`;
+}

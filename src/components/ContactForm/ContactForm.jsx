@@ -1,27 +1,23 @@
-import { useEffect, useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { selectContactsList } from 'redux/contacts/contactsSelectors';
 import {
   ButtonSend,
   ContactDiv,
-  Form,
-  Input,
+  FormContact,
+  InputContact,
   Labelcontact,
 } from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
 import { createContactsThunk } from 'redux/contacts/thunk';
-import { toast } from 'react-toastify';
-import { selectContactsList } from 'redux/contacts/contactsSelectors';
-import { LoadAdd } from 'components/Loader/Loader';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [add, setAdd] = useState(false);
+
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsList);
-  useEffect(() => {
-    setAdd(false);
-  }, [contacts]);
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'name') setName(value);
@@ -63,40 +59,36 @@ export const ContactForm = () => {
   };
 
   return (
-    <>
-      <h2>Phonebook</h2>
-      <ContactDiv>
-        <Form onSubmit={onSubmitAddContact}>
-          <Labelcontact>
-            Name:
-            <Input
-              onChange={handleChange}
-              type="text"
-              name="name"
-              value={name}
-              pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-          </Labelcontact>
-          <Labelcontact>
-            Number:
-            <Input
-              onChange={handleChange}
-              type="tel"
-              value={number}
-              name="number"
-              pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-          </Labelcontact>
-          <ButtonSend type="submit">
-            {add && <LoadAdd />} <p>Add contact</p>
-          </ButtonSend>
-        </Form>
-      </ContactDiv>
-      <h1>Contacts</h1>
-    </>
+    <ContactDiv>
+      <FormContact onSubmit={onSubmitAddContact}>
+        <Labelcontact>
+          Name
+          <InputContact
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            onChange={handleChange}
+            value={name}
+            placeholder="Enter name ..."
+            required
+          />
+        </Labelcontact>
+        <Labelcontact>
+          Number
+          <InputContact
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            onChange={handleChange}
+            value={number}
+            placeholder="Enter number ..."
+            required
+          />
+        </Labelcontact>
+        <ButtonSend type="submit">Add contact</ButtonSend>
+      </FormContact>
+    </ContactDiv>
   );
 };

@@ -1,7 +1,6 @@
-import { NavLink } from "react-router-dom";
-import { NavDiv } from "./Navigation.module";
+import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
-
+import { NavDiv } from './Navigation.styled';
 
 export const AuthNav = () => {
   return (
@@ -9,7 +8,7 @@ export const AuthNav = () => {
       <NavLink className={css.NavLink} to="/register">
         Registration
       </NavLink>
-      <NavLink className={css.NavLink}  to="/login">
+      <NavLink className={css.NavLink} to="/login">
         Sign In
       </NavLink>
     </NavDiv>

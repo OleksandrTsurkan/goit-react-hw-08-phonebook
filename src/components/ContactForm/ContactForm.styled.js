@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Form = styled.form`
+export const FormContact = styled.form`
   display: flex;
   width: 370px;
   padding: 8px;
@@ -9,7 +9,7 @@ export const Form = styled.form`
   border: 2px solid black;
 `;
 
-export const Input = styled.input`
+export const InputContact = styled.input`
   height: 25px;
   padding: 4px;
   width: 280px;
@@ -52,5 +52,3 @@ export const ContactDiv = styled.div`
   margin: 0px auto;
   padding-top: 30px;
 `;
-
-

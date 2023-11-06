@@ -8,7 +8,6 @@ export const FilterLabel = styled.label`
   padding: 4px 5px;
 `;
 
-
 export const FilterInput = styled.input`
   height: 25px;
   padding: 4px;

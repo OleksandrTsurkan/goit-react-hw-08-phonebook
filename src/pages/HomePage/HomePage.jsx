@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
-import { ButtonHome, HomeDiv, HomeText } from './HomePage.styled';
-import css from '../../components/Navigation/Navigation.module.css';
-
+// import css from './HomePage.module.css';
+import { ButtonHome, HomeDiv, HomeText } from './HomePaje.styled';
 
 export default function HomePage() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,13 +18,11 @@ export default function HomePage() {
         </>
       ) : (
         <>
-          <HomeText>Hello, this is the home page.</HomeText>
+          <HomeText>Hello! I'm your phonebook.</HomeText>
           <HomeText>Please log in to your account or register.</HomeText>
 
           <ButtonHome>
-            <NavLink className={css.NavLinkHome} to="/login">
-              Sign In
-            </NavLink>
+            <NavLink to="/login">Sign In</NavLink>
           </ButtonHome>
         </>
       )}

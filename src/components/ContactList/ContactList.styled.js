@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 
-
 export const Ullist = styled.ul`
   padding: 0px;
   border: 1px solid black;
