@@ -1,6 +1,6 @@
+import css from './LoginForm.module.css';
 import { toast } from 'react-toastify';
 import { logIn } from 'redux/auth/authThunk';
-import { ButtonSendLogin, LabelcontactLogin, LoginDiv, LoginInput } from './LoginForm.styled';
 const { useState } = require('react');
 const { useDispatch } = require('react-redux');
 
@@ -42,11 +42,12 @@ const LoginForm = () => {
   };
 
   return (
-    <LoginDiv>
-      <LoginForm onSubmit={hendleSubmitLogin}>
-        <LabelcontactLogin>
+    <div className={css.container}>
+      <form className={css.form} onSubmit={hendleSubmitLogin}>
+        <label className={css.label}>
           Email
-          <LoginInput
+          <input
+            className={css.input}
             type="email"
             name="email"
             value={email}
@@ -56,10 +57,11 @@ const LoginForm = () => {
             placeholder="Enter email ..."
             onChange={handleChangeInput}
           />
-        </LabelcontactLogin>
-        <LabelcontactLogin>
+        </label>
+        <label className={css.label}>
           Password
-          <LoginInput
+          <input
+            className={css.input}
             type="password"
             name="password"
             value={password}
@@ -69,12 +71,12 @@ const LoginForm = () => {
             placeholder="Enter password ..."
             onChange={handleChangeInput}
           />
-        </LabelcontactLogin>
-        <ButtonSendLogin type="submit">
+        </label>
+        <button className={css.button} type="submit">
           LogIn
-        </ButtonSendLogin>
-      </LoginForm>
-    </LoginDiv>
+        </button>
+      </form>
+    </div>
   );
 };
 

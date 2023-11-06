@@ -3,20 +3,19 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Headerstyle } from './Layout.styled';
+import css from './Layaut.module.css';
 
 export const Layout = () => {
   return (
     <>
-      <Headerstyle>
+      <header className={css.header}>
         <AppBar />
-      </Headerstyle>
+      </header>
       <main>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
       </main>
-
       <ToastContainer autoClose={3000} />
     </>
   );

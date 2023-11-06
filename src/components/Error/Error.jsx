@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 import { selectError } from 'redux/contacts/contactsSelectors';
 
-import { ErrorDiv } from './Error.styled';
+import css from './Error.module.css';
 
 export const Error = () => {
   const error = useSelector(selectError);
 
   return (
-    <ErrorDiv>
+    <div className={css.wrapperError}>
       <p> Нам шкода, {error}</p>
-    </ErrorDiv>
+    </div>
   );
 };

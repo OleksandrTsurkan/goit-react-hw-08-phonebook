@@ -3,14 +3,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { selectContactsList } from 'redux/contacts/contactsSelectors';
-import {
-  ButtonSend,
-  ContactDiv,
-  FormContact,
-  InputContact,
-  Labelcontact,
-} from './ContactForm.styled';
+
 import { createContactsThunk } from 'redux/contacts/thunk';
+import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -59,11 +54,12 @@ export const ContactForm = () => {
   };
 
   return (
-    <ContactDiv>
-      <FormContact onSubmit={onSubmitAddContact}>
-        <Labelcontact>
+    <div className={css.container}>
+      <form className={css.form} onSubmit={onSubmitAddContact}>
+        <label className={css.label}>
           Name
-          <InputContact
+          <input
+            className={css.input}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -73,10 +69,11 @@ export const ContactForm = () => {
             placeholder="Enter name ..."
             required
           />
-        </Labelcontact>
-        <Labelcontact>
+        </label>
+        <label className={css.label}>
           Number
-          <InputContact
+          <input
+            className={css.input}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -86,9 +83,11 @@ export const ContactForm = () => {
             placeholder="Enter number ..."
             required
           />
-        </Labelcontact>
-        <ButtonSend type="submit">Add contact</ButtonSend>
-      </FormContact>
-    </ContactDiv>
+        </label>
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
+      </form>
+    </div>
   );
 };

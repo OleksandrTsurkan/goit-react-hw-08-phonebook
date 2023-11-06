@@ -1,13 +1,8 @@
+import css from './RegisterForm.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { register } from 'redux/auth/authThunk';
-import {
-  ButtonSendRegistered,
-  LabelContactRegistered,
-  RegisteredDiv,
-  RegisteredInput,
-} from './RegisterForm.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -49,11 +44,12 @@ const RegisterForm = () => {
     setPassword('');
   };
   return (
-    <RegisteredDiv>
-      <RegisterForm onSubmit={handleSubmitUser}>
-        <LabelContactRegistered>
+    <div className={css.container}>
+      <form className={css.form} onSubmit={handleSubmitUser}>
+        <label className={css.label}>
           Name
-          <RegisteredInput
+          <input
+            className={css.input}
             type="text"
             name="name"
             value={name}
@@ -63,10 +59,11 @@ const RegisterForm = () => {
             placeholder="Enter name ..."
             onChange={handleChangeInput}
           />
-        </LabelContactRegistered>
-        <LabelContactRegistered>
+        </label>
+        <label className={css.label}>
           Email
-          <RegisteredInput
+          <input
+            className={css.input}
             type="email"
             name="email"
             value={email}
@@ -76,10 +73,11 @@ const RegisterForm = () => {
             placeholder="Enter email ..."
             onChange={handleChangeInput}
           />
-        </LabelContactRegistered>
-        <LabelContactRegistered>
+        </label>
+        <label className={css.label}>
           Password
-          <RegisteredInput
+          <input
+            className={css.input}
             type="password"
             name="password"
             value={password}
@@ -89,10 +87,12 @@ const RegisterForm = () => {
             placeholder="Enter password ..."
             onChange={handleChangeInput}
           />
-        </LabelContactRegistered>
-        <ButtonSendRegistered type="submit">Register</ButtonSendRegistered>
-      </RegisterForm>
-    </RegisteredDiv>
+        </label>
+        <button className={css.button} type="submit">
+          Register
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { selectContactsList } from 'redux/contacts/contactsSelectors';
 import { deleteContactsThunk, getContactsThunk } from 'redux/contacts/thunk';
 import { selectContactsFilter } from 'redux/filters/slice';
-import { ButtonDelete, Lilist, Ullist } from './ContactList.styled';
+import css from './ContactList.module.css';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -32,21 +32,22 @@ export const ContactList = () => {
       });
   };
   return (
-    <Ullist>
+    <ul className={css.list}>
       {visibleContacts.map(({ id, name, number }) => {
         return (
-          <Lilist key={id}>
+          <li className={css.item} key={id}>
             <span>{name}</span>
             <span>{number}</span>
-            <ButtonDelete
+            <button
+              className={css.button}
               type="button"
               onClick={() => deleteContact(id)}
             >
               Delete
-            </ButtonDelete>
-          </Lilist>
+            </button>
+          </li>
         );
       })}
-    </Ullist>
+    </ul>
   );
 };
