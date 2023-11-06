@@ -2,15 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from '../Loader/Loader';
 import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { refreshUser } from 'redux/auth/authThunk';
 import { Layout } from 'components/Layout/Layout';
-import HomePage from 'pages/HomePage/HomePage';
+// import HomePage from 'pages/HomePage/HomePage';
 import { PrivateRoute } from 'components/PrivateRoute';
-import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import LoginPage from 'pages/LoginPage/LoginPage';
-import ContactsPage from 'pages/ContactsPage/ContactsPage';
+// import RegisterPage from 'pages/RegisterPage/RegisterPage';
+// import LoginPage from 'pages/LoginPage/LoginPage';
+// import ContactsPage from 'pages/ContactsPage/ContactsPage';
 import { RestrictedRoute } from 'components/RestrictedRoute';
+
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -49,4 +54,4 @@ export const App = () => {
       </Route>
     </Routes>
   );
-}; 
+};

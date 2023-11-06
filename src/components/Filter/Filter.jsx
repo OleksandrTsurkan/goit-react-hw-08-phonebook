@@ -1,17 +1,17 @@
-
+import React from 'react';
 import { filterSet, selectContactsFilter } from 'redux/filters/slice';
 import { FilterInput, FilterLabel } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Filter = () => {
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
- const filter = useSelector(selectContactsFilter);
+  const filter = useSelector(selectContactsFilter);
 
- const onChangeFilter = event => {
-   const { value } = event.currentTarget;
-   dispatch(filterSet(value));
- };
+  const onChangeFilter = event => {
+    const { value } = event.currentTarget;
+    dispatch(filterSet(value));
+  };
 
   return (
     <div>

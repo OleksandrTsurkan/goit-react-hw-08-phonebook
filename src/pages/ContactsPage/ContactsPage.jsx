@@ -22,7 +22,8 @@ const ContactsPage = () => {
       <ContactForm />
       <Filter />
       {error ? <Error /> : <ContactList />}
-      {phoneBook.length === 0 && !error && !isLoading && <EmptyContactsList />}
+      {phoneBook.length === 0 && !error && !isLoading && (
+        <EmptyContactsList />)}
     </ContactsContainer>
   );
 };

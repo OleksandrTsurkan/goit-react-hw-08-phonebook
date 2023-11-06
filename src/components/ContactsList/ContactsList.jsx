@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ButtonDelete, Lilist, Ullist } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContactsThunk, getContactsThunk } from 'redux/contacts/thunk';
 import { toast } from 'react-toastify';
 import { selectContactsFilter } from 'redux/filters/slice';
 import { selectContactsList } from 'redux/contacts/contactsSelectors';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { SpinerDel } from 'components/Loader/Loader';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
+  const [load, setLoad] = useState(true);
+  useEffect(() => {
+    setLoad(false);
+  }, []);
+
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
@@ -38,8 +45,12 @@ export const ContactList = () => {
           <Lilist key={id}>
             <span>{name}</span>
             <span>{number}</span>
-            <ButtonDelete type="button" onClick={() => deleteContact(id)}>
-              Delete
+            <ButtonDelete
+              type="button"
+              onClick={() => deleteContact(id)}
+              aria-label="delete"
+            >
+              {load ? <SpinerDel /> : <DeleteIcon />}
             </ButtonDelete>
           </Lilist>
         );

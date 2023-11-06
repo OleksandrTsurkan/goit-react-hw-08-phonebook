@@ -11,8 +11,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { authReducer } from './auth/authSlise';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { authReducer } from './auth/authSlice';
 
 const authPersistConfig = {
   key: 'auth',

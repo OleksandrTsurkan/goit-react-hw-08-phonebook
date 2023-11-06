@@ -33,7 +33,6 @@ const LoginForm = () => {
   const hendleSubmitLogin = event => {
     event.preventDefault();
     const loginUser = { email, password };
-    //  console.log('logInUser', loginUser);
     dispatch(logIn(loginUser))
       .unwrap()
       .then(originalPromiseResult => {

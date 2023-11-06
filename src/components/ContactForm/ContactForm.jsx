@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ButtonSend,
   ContactDiv,
@@ -11,13 +11,17 @@ import { nanoid } from '@reduxjs/toolkit';
 import { createContactsThunk } from 'redux/contacts/thunk';
 import { toast } from 'react-toastify';
 import { selectContactsList } from 'redux/contacts/contactsSelectors';
+import { LoadAdd } from 'components/Loader/Loader';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
+  const [add, setAdd] = useState(false);
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsList);
+  useEffect(() => {
+    setAdd(false);
+  }, [contacts]);
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'name') setName(value);
@@ -87,7 +91,9 @@ export const ContactForm = () => {
               required
             />
           </Labelcontact>
-          <ButtonSend type="submit">Add contact</ButtonSend>
+          <ButtonSend type="submit">
+            {add && <LoadAdd />} <p>Add contact</p>
+          </ButtonSend>
         </Form>
       </ContactDiv>
       <h1>Contacts</h1>
